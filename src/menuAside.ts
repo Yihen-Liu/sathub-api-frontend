@@ -21,35 +21,43 @@ const menuAside: MenuAsideItem[] = [
     label: 'Dashboard',
   },
   {
-    href: '/tables',
-    label: 'Tables',
+    href: '/mainnet',
+    label: 'Mainnet',
     icon: mdiTable,
   },
-  {
-    href: '/forms',
-    label: 'Forms',
-    icon: mdiSquareEditOutline,
-  },
-  {
-    href: '/ui',
-    label: 'UI',
-    icon: mdiTelevisionGuide,
-  },
-  {
-    href: '/responsive',
-    label: 'Responsive',
-    icon: mdiResponsive,
-  },
-  {
-    href: '/',
-    label: 'Styles',
-    icon: mdiPalette,
-  },
+	{
+		href: '/testnet',
+		label: 'Testnet',
+		icon: mdiSquareEditOutline,
+	},
+	{
+		href: '/lightning',
+		label: 'Lightning',
+		icon: mdiSquareEditOutline,
+	},
+	/*
+	  {
+		href: '/ui',
+		label: 'UI',
+		icon: mdiTelevisionGuide,
+	  },
+	  {
+		href: '/responsive',
+		label: 'Responsive',
+		icon: mdiResponsive,
+	  },
+	  {
+		href: '/',
+		label: 'Styles',
+		icon: mdiPalette,
+	  },
+	*/
   {
     href: '/profile',
     label: 'Profile',
     icon: mdiAccountCircle,
   },
+/*
   {
     href: '/login',
     label: 'Login',
@@ -84,6 +92,7 @@ const menuAside: MenuAsideItem[] = [
     icon: mdiVuejs,
     target: '_blank',
   },
+*/
 ]
 
 export default menuAside

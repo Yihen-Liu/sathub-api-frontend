@@ -15,10 +15,11 @@ const TablesPage = () => {
   return (
     <>
       <Head>
-        <title>{getPageTitle('Tables')}</title>
+        <title>{getPageTitle('Mainnet')}</title>
       </Head>
       <SectionMain>
-        <SectionTitleLineWithButton icon={mdiTableBorder} title="Tables" main>
+        <SectionTitleLineWithButton icon={mdiTableBorder} title="Mainnet Setting" main>
+{/*
           <Button
             href="https://github.com/justboil/admin-one-react-tailwind"
             target="_blank"
@@ -28,16 +29,20 @@ const TablesPage = () => {
             roundedFull
             small
           />
+*/}
         </SectionTitleLineWithButton>
 
+{/*
         <NotificationBar color="info" icon={mdiMonitorCellphone}>
           <b>Responsive table.</b> Collapses on mobile
         </NotificationBar>
+*/}
 
         <CardBox className="mb-6" hasTable>
           <TableSampleClients />
         </CardBox>
 
+{/*
         <SectionTitleLineWithButton icon={mdiTableOff} title="Empty variation" />
 
         <NotificationBar color="danger" icon={mdiTableOff}>
@@ -47,6 +52,7 @@ const TablesPage = () => {
         <CardBox>
           <CardBoxComponentEmpty />
         </CardBox>
+*/}
       </SectionMain>
     </>
   )

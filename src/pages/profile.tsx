@@ -42,6 +42,7 @@ const ProfilePage = () => {
 
       <SectionMain>
         <SectionTitleLineWithButton icon={mdiAccount} title="Profile" main>
+{/*
           <Button
             href="https://github.com/justboil/admin-one-react-tailwind"
             target="_blank"
@@ -51,6 +52,7 @@ const ProfilePage = () => {
             roundedFull
             small
           />
+*/}
         </SectionTitleLineWithButton>
 
         <CardBoxUser className="mb-6" />

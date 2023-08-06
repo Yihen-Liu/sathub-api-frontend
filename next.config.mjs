@@ -2,18 +2,25 @@
  * @type {import('next').NextConfig}
  */
  const nextConfig = {
-  basePath: "/admin-one-react-tailwind",
+  basePath: "/sathub",
   async redirects() {
     return [
       {
           source: '/',
-          destination: '/admin-one-react-tailwind',
+          destination: '/sathub',
           basePath: false,
           permanent: false
-      }
+      },
+	  {
+		    source: '/sathub/login',
+		    destination: '/sathub',
+		    basePath: false,
+		    permanent: false
+	  },
+
     ]
   },
-  images: {
+	images: {
     unoptimized: true,
     remotePatterns: [
       {

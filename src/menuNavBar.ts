@@ -12,8 +12,8 @@ import {
   mdiVuejs,
 } from '@mdi/js'
 import { MenuNavBarItem } from './interfaces'
-
-const menuNavBar: MenuNavBarItem[] = [
+const menuNavBar: MenuNavBarItem[]=[]
+const _menuNavBar: MenuNavBarItem[] = [
   {
     icon: mdiMenu,
     label: 'Sample menu',

@@ -48,6 +48,7 @@ const Dashboard = () => {
       </Head>
       <SectionMain>
         <SectionTitleLineWithButton icon={mdiChartTimelineVariant} title="Overview" main>
+{/*
           <Button
             href="https://github.com/justboil/admin-one-react-tailwind"
             target="_blank"
@@ -57,6 +58,7 @@ const Dashboard = () => {
             roundedFull
             small
           />
+*/}
         </SectionTitleLineWithButton>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
@@ -104,21 +106,29 @@ const Dashboard = () => {
           </div>
         </div>
 
+{/*
         <div className="my-6">
           <SectionBannerStarOnGitHub />
         </div>
+*/}
 
+{/*
         <SectionTitleLineWithButton icon={mdiChartPie} title="Trends overview">
           <Button icon={mdiReload} color="whiteDark" onClick={fillChartData} />
         </SectionTitleLineWithButton>
+*/}
 
+{/*
         <CardBox className="mb-6">{chartData && <ChartLineSample data={chartData} />}</CardBox>
+*/}
 
         <SectionTitleLineWithButton icon={mdiAccountMultiple} title="Clients" />
 
+{/*
         <NotificationBar color="info" icon={mdiMonitorCellphone}>
           <b>Responsive table.</b> Collapses on mobile
         </NotificationBar>
+*/}
 
         <CardBox hasTable>
           <TableSampleClients />

@@ -20,11 +20,12 @@ const FormsPage = () => {
   return (
     <>
       <Head>
-        <title>{getPageTitle('Forms')}</title>
+        <title>{getPageTitle('Testnet')}</title>
       </Head>
 
       <SectionMain>
-        <SectionTitleLineWithButton icon={mdiBallotOutline} title="Formik forms example" main>
+        <SectionTitleLineWithButton icon={mdiBallotOutline} title="Testnet Setting" main>
+{/*
           <Button
             href="https://github.com/justboil/admin-one-react-tailwind"
             target="_blank"
@@ -34,6 +35,7 @@ const FormsPage = () => {
             roundedFull
             small
           />
+*/}
         </SectionTitleLineWithButton>
 
         <CardBox>
