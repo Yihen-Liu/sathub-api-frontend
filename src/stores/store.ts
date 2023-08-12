@@ -3,10 +3,10 @@ import styleReducer from './styleSlice'
 import mainReducer from './mainSlice'
 
 export const store = configureStore({
-  reducer: {
-    style: styleReducer,
-    main: mainReducer,
-  },
+    reducer: {
+        style: styleReducer,
+        main: mainReducer,
+    },
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

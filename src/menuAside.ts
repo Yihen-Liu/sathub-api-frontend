@@ -1,41 +1,41 @@
 import {
-  mdiAccountCircle,
-  mdiMonitor,
-  mdiGithub,
-  mdiLock,
-  mdiAlertCircle,
-  mdiSquareEditOutline,
-  mdiTable,
-  mdiViewList,
-  mdiTelevisionGuide,
-  mdiResponsive,
-  mdiPalette,
-  mdiVuejs,
+    mdiAccountCircle,
+    mdiMonitor,
+    mdiGithub,
+    mdiLock,
+    mdiAlertCircle,
+    mdiSquareEditOutline,
+    mdiTable,
+    mdiViewList,
+    mdiTelevisionGuide,
+    mdiResponsive,
+    mdiPalette,
+    mdiVuejs,
 } from '@mdi/js'
 import { MenuAsideItem } from './interfaces'
 
 const menuAside: MenuAsideItem[] = [
-  {
-    href: '/dashboard',
-    icon: mdiMonitor,
-    label: 'Dashboard',
-  },
-  {
-    href: '/mainnet',
-    label: 'Mainnet',
-    icon: mdiTable,
-  },
-	{
-		href: '/testnet',
-		label: 'Testnet',
-		icon: mdiSquareEditOutline,
-	},
-	{
-		href: '/lightning',
-		label: 'Lightning',
-		icon: mdiSquareEditOutline,
-	},
-	/*
+    {
+        href: '/dashboard',
+        icon: mdiMonitor,
+        label: 'Dashboard',
+    },
+    {
+        href: '/mainnet',
+        label: 'Mainnet',
+        icon: mdiTable,
+    },
+    {
+        href: '/testnet',
+        label: 'Testnet',
+        icon: mdiSquareEditOutline,
+    },
+    {
+        href: '/lightning',
+        label: 'Lightning',
+        icon: mdiSquareEditOutline,
+    },
+    /*
 	  {
 		href: '/ui',
 		label: 'UI',
@@ -52,12 +52,12 @@ const menuAside: MenuAsideItem[] = [
 		icon: mdiPalette,
 	  },
 	*/
-  {
-    href: '/profile',
-    label: 'Profile',
-    icon: mdiAccountCircle,
-  },
-/*
+    {
+        href: '/profile',
+        label: 'Profile',
+        icon: mdiAccountCircle,
+    },
+    /*
   {
     href: '/login',
     label: 'Login',

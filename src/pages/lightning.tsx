@@ -12,14 +12,14 @@ import TableSampleClients from '../components/Table/SampleClients'
 import { getPageTitle } from '../config'
 
 const TablesPage = () => {
-  return (
-    <>
-      <Head>
-        <title>{getPageTitle('Lightning')}</title>
-      </Head>
-      <SectionMain>
-        <SectionTitleLineWithButton icon={mdiTableBorder} title="Lightning Setting" main>
-{/*
+    return (
+        <>
+            <Head>
+                <title>{getPageTitle('Lightning')}</title>
+            </Head>
+            <SectionMain>
+                <SectionTitleLineWithButton icon={mdiTableBorder} title="Lightning Setting" main>
+                    {/*
           <Button
             href="https://github.com/justboil/admin-one-react-tailwind"
             target="_blank"
@@ -30,19 +30,19 @@ const TablesPage = () => {
             small
           />
 */}
-        </SectionTitleLineWithButton>
+                </SectionTitleLineWithButton>
 
-{/*
+                {/*
         <NotificationBar color="info" icon={mdiMonitorCellphone}>
           <b>Responsive table.</b> Collapses on mobile
         </NotificationBar>
 */}
 
-        <CardBox className="mb-6" hasTable>
-          <TableSampleClients />
-        </CardBox>
+                <CardBox className="mb-6" hasTable>
+                    <TableSampleClients />
+                </CardBox>
 
-{/*
+                {/*
         <SectionTitleLineWithButton icon={mdiTableOff} title="Empty variation" />
 
         <NotificationBar color="danger" icon={mdiTableOff}>
@@ -53,13 +53,13 @@ const TablesPage = () => {
           <CardBoxComponentEmpty />
         </CardBox>
 */}
-      </SectionMain>
-    </>
-  )
+            </SectionMain>
+        </>
+    )
 }
 
 TablesPage.getLayout = function getLayout(page: ReactElement) {
-  return <LayoutAuthenticated>{page}</LayoutAuthenticated>
+    return <LayoutAuthenticated>{page}</LayoutAuthenticated>
 }
 
 export default TablesPage

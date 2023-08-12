@@ -4,22 +4,22 @@ import { gradientBgPurplePink, gradientBgDark, gradientBgPinkRed } from '../../c
 import { useAppSelector } from '../../stores/hooks'
 
 type Props = {
-  bg: BgKey
-  children: ReactNode
+    bg: BgKey
+    children: ReactNode
 }
 
 export default function SectionFullScreen({ bg, children }: Props) {
-  const darkMode = useAppSelector((state) => state.style.darkMode)
+    const darkMode = useAppSelector((state) => state.style.darkMode)
 
-  let componentClass = 'flex min-h-screen items-center justify-center '
+    let componentClass = 'flex min-h-screen items-center justify-center '
 
-  if (darkMode) {
-    componentClass += gradientBgDark
-  } else if (bg === 'purplePink') {
-    componentClass += gradientBgPurplePink
-  } else if (bg === 'pinkRed') {
-    componentClass += gradientBgPinkRed
-  }
+    if (darkMode) {
+        componentClass += gradientBgDark
+    } else if (bg === 'purplePink') {
+        componentClass += gradientBgPurplePink
+    } else if (bg === 'pinkRed') {
+        componentClass += gradientBgPinkRed
+    }
 
-  return <div className={componentClass}>{children}</div>
+    return <div className={componentClass}>{children}</div>
 }
