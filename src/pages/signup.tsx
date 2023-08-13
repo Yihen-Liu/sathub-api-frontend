@@ -11,13 +11,44 @@ import FormCheckRadio from '../components/Form/CheckRadio'
 import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
 import { useRouter } from 'next/router'
-import { getPageTitle } from '../config'
+import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
+import axios from "axios";
+import {sha256} from "../util/crypto";
+
+interface SignupValue {
+    email: string;
+    password: string;
+    passwordconfirm: string;
+}
+const initialValues: SignupValue = {
+    email: '',
+    password: '',
+    passwordconfirm: '',
+};
 
 export default function Error() {
     const router = useRouter()
-
-    const handleSubmit = () => {
-        router.push('/dashboard')
+    const handleSubmit = async(values:SignupValue) => {
+        if(values.email=="" || values.password==""||values.passwordconfirm==""){
+            alert("email or password is empty");
+            return
+        }
+        if(values.password!==values.passwordconfirm){
+            alert("password does not match");
+            return
+        }
+        const response= await axios.post(backendURL,{
+            jsonrpc:"2.0",
+            method:"signup",
+            params:[values.email, sha256(values.password,"hex")],
+            id:new Date().getTime()
+        })
+        if(response.data.code==backendSuccessedCode){
+            alert("please check your "+values.email+ " inbox");
+            //await router.push('/dashboard')
+        }else{
+            alert(response.data.error)
+        }
     }
 
     return (
@@ -31,10 +62,7 @@ export default function Error() {
                     Bitcoin-Only Service Provider &nbsp; &nbsp;
                 </h1>
                 <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
-                    <Formik
-                        initialValues={{ login: 'john.doe', password: '', remember: false }}
-                        onSubmit={() => handleSubmit()}
-                    >
+                    <Formik initialValues={initialValues} onSubmit={handleSubmit} >
                         <Form>
                             <FormField label="Email" help="Please enter your email">
                                 <Field name="email" />
@@ -48,7 +76,7 @@ export default function Error() {
                                 label="Password Confirm"
                                 help="Please enter your password again"
                             >
-                                <Field name="password-confirm" type="password" />
+                                <Field name="passwordconfirm" type="password" />
                             </FormField>
 
                             <FormCheckRadio type="checkbox" label="Remember">

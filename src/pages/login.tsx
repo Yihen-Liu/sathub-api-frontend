@@ -11,13 +11,32 @@ import FormCheckRadio from '../components/Form/CheckRadio'
 import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
 import { useRouter } from 'next/router'
-import { getPageTitle } from '../config'
+import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
+import axios from "axios";
+import {sha256} from "../util/crypto";
 
+interface LoginValue {
+    email: string;
+    password: string;
+}
+const initialValues: LoginValue = {
+    email: '',
+    password: '',
+};
 export default function Error() {
     const router = useRouter()
-
-    const handleSubmit = () => {
-        router.push('/dashboard')
+    const handleSubmit = async(values:LoginValue) => {
+        const response= await axios.post(backendURL,{
+            jsonrpc:"2.0",
+            method:"login",
+            params:[values.email,sha256(values.password, "hex")],
+            id:new Date().getTime()
+        })
+        if(response.data.code===backendSuccessedCode){
+            await router.push('/dashboard')
+        }else{
+            alert(response.data.error)
+        }
     }
 
     return (
@@ -28,21 +47,14 @@ export default function Error() {
 
             <SectionFullScreen bg="purplePink">
                 <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
-                    <Formik
-                        initialValues={{
-                            login: 'john.doe',
-                            password: 'bG1sL9eQ1uD2sK3b',
-                            remember: true,
-                        }}
-                        onSubmit={() => handleSubmit()}
-                    >
+                    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                         <Form>
-                            <FormField label="Login" help="Please enter your login">
-                                <Field name="login" />
+                            <FormField label="Login" help="Please enter your email login">
+                                <Field name="email" id="email"/>
                             </FormField>
 
                             <FormField label="Password" help="Please enter your password">
-                                <Field name="password" type="password" />
+                                <Field name="password" id="password" type="password" />
                             </FormField>
 
                             <FormCheckRadio type="checkbox" label="Remember">

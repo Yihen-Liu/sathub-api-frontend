@@ -7,7 +7,7 @@ import LayoutGuest from '../layouts/Guest'
 import SectionMain from '../components/Section/Main'
 import { StyleKey } from '../interfaces'
 import { gradientBgPurplePink, gradientBgDark } from '../colors'
-import { appTitle } from '../config'
+import {appTitle, backendSuccessedCode, backendURL} from '../config'
 import { useAppDispatch } from '../stores/hooks'
 import { setDarkMode, setStyle } from '../stores/styleSlice'
 import SectionFullScreen from '../components/Section/FullScreen'
@@ -17,6 +17,18 @@ import FormCheckRadio from '../components/Form/CheckRadio'
 import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
 import Button from '../components/Button'
+import {useJsonRpc} from "../hooks/useJsonRpc";
+import axios from "axios";
+import {sha256} from "../util/crypto";
+
+interface LoginValue {
+    email: string;
+    password: string;
+}
+const initialValues: LoginValue = {
+    email: '',
+    password: '',
+};
 
 const StyleSelect = () => {
     const dispatch = useAppDispatch()
@@ -27,9 +39,19 @@ const StyleSelect = () => {
 
     const router = useRouter()
 
-    const handleSubmit = () => {
+    const handleSubmit = async(values:LoginValue) => {
         //dispatch(setStyle('white'))
-        router.push('/dashboard')
+        const response= await axios.post(backendURL,{
+            jsonrpc:"2.0",
+            method:"login",
+            params:[values.email,sha256(values.password,"hex")],
+            id:new Date().getTime()
+        })
+        if(response.data.code==backendSuccessedCode){
+            await router.push('/dashboard')
+        }else{
+            alert(response.data.error)
+        }
     }
     return (
         <>
@@ -42,10 +64,7 @@ const StyleSelect = () => {
                     Bitcoin-Only Service Provider &nbsp; &nbsp;
                 </h1>
                 <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
-                    <Formik
-                        initialValues={{ login: 'john.doe', password: '', remember: false }}
-                        onSubmit={() => handleSubmit()}
-                    >
+                    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                         <Form>
                             <FormField label="Email" help="Please enter your email">
                                 <Field name="email" />
