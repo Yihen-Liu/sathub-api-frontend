@@ -7,6 +7,7 @@ import Head from 'next/head'
 import { store } from '../stores/store'
 import { Provider } from 'react-redux'
 import '../css/main.css'
+import {RecoilRoot} from "recoil";
 
 export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode
@@ -34,6 +35,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const imageHeight = '960'
 
     return (
+        <RecoilRoot>
         <Provider store={store}>
             {getLayout(
                 <>
@@ -66,17 +68,18 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
                     <Script id="google-analytics" strategy="afterInteractive">
                         {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'UA-130795909-1');
-            `}
+                          window.dataLayer = window.dataLayer || [];
+                          function gtag(){dataLayer.push(arguments);}
+                          gtag('js', new Date());
+                          gtag('config', 'UA-130795909-1');
+                        `}
                     </Script>
 
-                    <Component {...pageProps} />
+                   <Component {...pageProps} />
                 </>
             )}
         </Provider>
+        </RecoilRoot>
     )
 }
 

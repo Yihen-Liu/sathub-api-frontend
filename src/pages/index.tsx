@@ -20,6 +20,8 @@ import Button from '../components/Button'
 import {useJsonRpc} from "../hooks/useJsonRpc";
 import axios from "axios";
 import {sha256} from "../util/crypto";
+import {useRecoilState} from "recoil";
+import {jwtState} from "../stores/states";
 
 interface LoginValue {
     email: string;
@@ -31,16 +33,10 @@ const initialValues: LoginValue = {
 };
 
 const StyleSelect = () => {
-    const dispatch = useAppDispatch()
-
-    //dispatch(setDarkMode(false))
-
-    const styles: StyleKey[] = ['white', 'basic']
-
+    const [, setJwt] = useRecoilState(jwtState)
     const router = useRouter()
 
     const handleSubmit = async(values:LoginValue) => {
-        //dispatch(setStyle('white'))
         const response= await axios.post(backendURL,{
             jsonrpc:"2.0",
             method:"login",
@@ -48,6 +44,8 @@ const StyleSelect = () => {
             id:new Date().getTime()
         })
         if(response.data.code==backendSuccessedCode){
+            console.log("response.data:",response.data.result)
+            setJwt(response.data.result)
             await router.push('/dashboard')
         }else{
             alert(response.data.error)

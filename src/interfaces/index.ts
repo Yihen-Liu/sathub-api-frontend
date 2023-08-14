@@ -68,6 +68,11 @@ export type Client = {
     created_mm_dd_yyyy: string
 }
 
+export type Subscription ={
+    mode: string
+    url:string
+    endtime:string
+}
 export type StyleKey = 'white' | 'basic'
 
 export type UserForm = {

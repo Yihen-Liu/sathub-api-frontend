@@ -1,22 +1,46 @@
-import { mdiAccount, mdiBallotOutline, mdiGithub, mdiMail, mdiUpload } from '@mdi/js'
+import { mdiBallotOutline} from '@mdi/js'
 import { Field, Form, Formik } from 'formik'
 import Head from 'next/head'
-import { ReactElement } from 'react'
+import React, { ReactElement } from 'react'
 import Button from '../components/Button'
 import Buttons from '../components/Buttons'
 import Divider from '../components/Divider'
 import CardBox from '../components/CardBox'
-import FormCheckRadio from '../components/Form/CheckRadio'
-import FormCheckRadioGroup from '../components/Form/CheckRadioGroup'
 import FormField from '../components/Form/Field'
-import FormFilePicker from '../components/Form/FilePicker'
 import LayoutAuthenticated from '../layouts/Authenticated'
 import SectionMain from '../components/Section/Main'
-import SectionTitle from '../components/Section/Title'
 import SectionTitleLineWithButton from '../components/Section/TitleLineWithButton'
-import { getPageTitle } from '../config'
+import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
+import Subscriptions from "../components/Table/Subscription";
+import axios from "axios";
+
+interface SubMode {
+    mode: string;
+    duration: string;
+    network:string
+}
+const initialValues: SubMode = {
+    mode: 'jsonrpc',
+    duration: 'weekly',
+    network:'bitcoin'
+};
 
 const FormsPage = () => {
+    const handleSubmit = async(sub:SubMode) => {
+        const response= await axios.post(backendURL,{
+            jsonrpc:"2.0",
+            method:"apply",
+            params:[sub.mode,sub.duration, sub.network],
+            id:new Date().getTime()
+        })
+        if(response.data.code==backendSuccessedCode){
+            alert("apply successed");
+        }else{
+            alert(response.data.error);
+        }
+    }
+
+
     return (
         <>
             <Head>
@@ -24,128 +48,47 @@ const FormsPage = () => {
             </Head>
 
             <SectionMain>
-                <SectionTitleLineWithButton icon={mdiBallotOutline} title="Testnet Setting" main>
-                    {/*
-          <Button
-            href="https://github.com/justboil/admin-one-react-tailwind"
-            target="_blank"
-            icon={mdiGithub}
-            label="Star on GitHub"
-            color="contrast"
-            roundedFull
-            small
-          />
-*/}
-                </SectionTitleLineWithButton>
-
+                <SectionTitleLineWithButton icon={mdiBallotOutline} title="Testnet Subscription" main> </SectionTitleLineWithButton>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>&nbsp; &nbsp; &nbsp; Subscribe Mode</th>
+                        <th>Effective Duration</th>
+                        <th>Network</th>
+                    </tr>
+                    </thead>
+                </table>
                 <CardBox>
-                    <Formik
-                        initialValues={{
-                            fullname: 'John Doe',
-                            email: 'john.doe@example.com',
-                            phone: '',
-                            color: 'green',
-                            textarea: 'Hello',
-                        }}
-                        onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
-                    >
+                    <Formik initialValues={initialValues} onSubmit={handleSubmit} >
                         <Form>
-                            <FormField label="Grouped with icons" icons={[mdiAccount, mdiMail]}>
-                                <Field name="fullname" placeholder="Full name" />
-                                <Field type="email" name="email" placeholder="Email" />
-                            </FormField>
+                            <FormField >
+                                <Field name="mode" id="mode" component="select">
+                                    <option value="jsonrpc">JSONRPC</option>
+                                    <option value="wss">WSS</option>
+                                    <option value="zmq">ZMQ</option>
+                                    <option value="restful">RESTFUL</option>
+                                </Field>
+                                <Field name="duration" id="duration" component="select">
+                                    <option value="weekly">Weekly</option>
+                                    <option value="month">Month</option>
+                                    <option value="yearly">Yearly</option>
+                                </Field>
 
-                            <FormField
-                                label="With help line and labelFor"
-                                labelFor="phone"
-                                help="Help line comes here"
-                            >
-                                <Field name="phone" placeholder="Phone" id="phone" />
-                            </FormField>
-
-                            <FormField label="Dropdown" labelFor="color">
-                                <Field name="color" id="color" component="select">
-                                    <option value="red">Red</option>
-                                    <option value="green">Green</option>
-                                    <option value="blue">Blue</option>
+                                <Field name="network" id="network" component="select">
+                                    <option value="bitcoin">Bitcoin</option>
                                 </Field>
                             </FormField>
-
-                            <Divider />
-
-                            <FormField label="Textarea" hasTextareaHeight>
-                                <Field name="textarea" as="textarea" placeholder="Your text here" />
-                            </FormField>
-
-                            <Divider />
-
                             <Buttons>
-                                <Button type="submit" color="info" label="Submit" />
-                                <Button type="reset" color="info" outline label="Reset" />
+                                <Button type="submit" color="info" label="Apply Plan" />
                             </Buttons>
+
+                            <Divider />
                         </Form>
                     </Formik>
                 </CardBox>
-            </SectionMain>
 
-            <SectionTitle>Custom elements</SectionTitle>
-
-            <SectionMain>
-                <CardBox>
-                    <Formik
-                        initialValues={{
-                            checkboxes: ['lorem'],
-                            switches: ['lorem'],
-                            radio: 'lorem',
-                        }}
-                        onSubmit={() => null}
-                    >
-                        <Form>
-                            <FormField label="Checkbox">
-                                <FormCheckRadioGroup>
-                                    <FormCheckRadio type="checkbox" label="Lorem">
-                                        <Field type="checkbox" name="checkboxes" value="lorem" />
-                                    </FormCheckRadio>
-                                    <FormCheckRadio type="checkbox" label="Ipsum">
-                                        <Field type="checkbox" name="checkboxes" value="ipsum" />
-                                    </FormCheckRadio>
-                                    <FormCheckRadio type="checkbox" label="Dolore">
-                                        <Field type="checkbox" name="checkboxes" value="dolore" />
-                                    </FormCheckRadio>
-                                </FormCheckRadioGroup>
-                            </FormField>
-
-                            <Divider />
-
-                            <FormField label="Radio">
-                                <FormCheckRadioGroup>
-                                    <FormCheckRadio type="radio" label="Lorem">
-                                        <Field type="radio" name="radio" value="lorem" />
-                                    </FormCheckRadio>
-                                    <FormCheckRadio type="radio" label="Ipsum">
-                                        <Field type="radio" name="radio" value="ipsum" />
-                                    </FormCheckRadio>
-                                </FormCheckRadioGroup>
-                            </FormField>
-
-                            <Divider />
-
-                            <FormField label="Switch">
-                                <FormCheckRadioGroup>
-                                    <FormCheckRadio type="switch" label="Lorem">
-                                        <Field type="checkbox" name="switches" value="lorem" />
-                                    </FormCheckRadio>
-                                    <FormCheckRadio type="switch" label="Ipsum">
-                                        <Field type="checkbox" name="switches" value="ipsum" />
-                                    </FormCheckRadio>
-                                </FormCheckRadioGroup>
-                            </FormField>
-                        </Form>
-                    </Formik>
-                    <Divider />
-                    <FormField>
-                        <FormFilePicker label="Upload" color="info" icon={mdiUpload} />
-                    </FormField>
+                <CardBox className="mb-6" hasTable>
+                    <Subscriptions />
                 </CardBox>
             </SectionMain>
         </>
