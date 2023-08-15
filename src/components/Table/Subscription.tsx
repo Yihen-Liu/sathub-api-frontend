@@ -1,13 +1,10 @@
 import React  from 'react'
 import { useSubscribe} from '../../hooks/sampleData'
 import { Subscription} from '../../interfaces'
-import {useRecoilState} from "recoil";
-import {jwtState} from "../../stores/states";
+import {useAppSelector} from "../../stores/hooks";
 
 const Subscriptions = () => {
-    const [jwt, ] = useRecoilState(jwtState)
-   //const jwtToken ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpdXlpaGVuQGxpdmUuY29tIiwiZXhwIjoxNjkyMDkwOTcwfQ.yoSlSn7Y8H3zrk3KmgNtSbzR4AX6RYZ09gHwpbrcw5I'
-    console.log("jwt:", jwt)
+    const jwt = useAppSelector((state) => state.main.jwt)
     const { subscriptions } = useSubscribe(jwt)
     return (
         <>

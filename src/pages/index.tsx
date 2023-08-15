@@ -1,15 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { ReactElement } from 'react'
 import CardBox from '../components/CardBox'
 import LayoutGuest from '../layouts/Guest'
-import SectionMain from '../components/Section/Main'
-import { StyleKey } from '../interfaces'
-import { gradientBgPurplePink, gradientBgDark } from '../colors'
 import {appTitle, backendSuccessedCode, backendURL} from '../config'
-import { useAppDispatch } from '../stores/hooks'
-import { setDarkMode, setStyle } from '../stores/styleSlice'
 import SectionFullScreen from '../components/Section/FullScreen'
 import { Field, Form, Formik } from 'formik'
 import FormField from '../components/Form/Field'
@@ -17,11 +11,8 @@ import FormCheckRadio from '../components/Form/CheckRadio'
 import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
 import Button from '../components/Button'
-import {useJsonRpc} from "../hooks/useJsonRpc";
 import axios from "axios";
 import {sha256} from "../util/crypto";
-import {useRecoilState} from "recoil";
-import {jwtState} from "../stores/states";
 
 interface LoginValue {
     email: string;
@@ -33,7 +24,6 @@ const initialValues: LoginValue = {
 };
 
 const StyleSelect = () => {
-    const [, setJwt] = useRecoilState(jwtState)
     const router = useRouter()
 
     const handleSubmit = async(values:LoginValue) => {
@@ -45,7 +35,8 @@ const StyleSelect = () => {
         })
         if(response.data.code==backendSuccessedCode){
             console.log("response.data:",response.data.result)
-            setJwt(response.data.result)
+            //setJwt(response.data.result)
+            localStorage.setItem("sathub-jwt-key",response.data.result)
             await router.push('/dashboard')
         }else{
             alert(response.data.error)

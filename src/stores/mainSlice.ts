@@ -6,6 +6,7 @@ interface MainState {
     userEmail: null | string
     userAvatar: null | string
     isFieldFocusRegistered: boolean
+    jwt:string
 }
 
 const initialState: MainState = {
@@ -13,7 +14,7 @@ const initialState: MainState = {
     userName: '',
     userEmail: null,
     userAvatar: null,
-
+    jwt:'',
     /* Field focus with ctrl+k (to register only once) */
     isFieldFocusRegistered: false,
 }
@@ -26,6 +27,7 @@ export const mainSlice = createSlice({
             state.userName = action.payload.name
             state.userEmail = action.payload.email
             state.userAvatar = action.payload.avatar
+            state.jwt = action.payload.jwt
         },
     },
 })

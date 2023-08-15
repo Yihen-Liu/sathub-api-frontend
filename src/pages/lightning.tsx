@@ -1,4 +1,4 @@
-import { mdiGithub, mdiMonitorCellphone, mdiTableBorder, mdiTableOff } from '@mdi/js'
+import {mdiBallotOutline, mdiGithub, mdiMonitorCellphone, mdiTableBorder, mdiTableOff} from '@mdi/js'
 import Head from 'next/head'
 import React, { ReactElement } from 'react'
 import Button from '../components/Button'
@@ -18,41 +18,10 @@ const TablesPage = () => {
                 <title>{getPageTitle('Lightning')}</title>
             </Head>
             <SectionMain>
-                <SectionTitleLineWithButton icon={mdiTableBorder} title="Lightning Setting" main>
-                    {/*
-          <Button
-            href="https://github.com/justboil/admin-one-react-tailwind"
-            target="_blank"
-            icon={mdiGithub}
-            label="Star on GitHub"
-            color="contrast"
-            roundedFull
-            small
-          />
-*/}
+                <SectionTitleLineWithButton icon={mdiBallotOutline} title="Lightning Setting" main>
                 </SectionTitleLineWithButton>
 
-                {/*
-        <NotificationBar color="info" icon={mdiMonitorCellphone}>
-          <b>Responsive table.</b> Collapses on mobile
-        </NotificationBar>
-*/}
 
-                <CardBox className="mb-6" hasTable>
-                    <TableSampleClients />
-                </CardBox>
-
-                {/*
-        <SectionTitleLineWithButton icon={mdiTableOff} title="Empty variation" />
-
-        <NotificationBar color="danger" icon={mdiTableOff}>
-          <b>Empty card.</b> When there&apos;s nothing to show
-        </NotificationBar>
-
-        <CardBox>
-          <CardBoxComponentEmpty />
-        </CardBox>
-*/}
             </SectionMain>
         </>
     )

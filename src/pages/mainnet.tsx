@@ -1,58 +1,110 @@
-import { mdiGithub, mdiMonitorCellphone, mdiTableBorder, mdiTableOff } from '@mdi/js'
+import { mdiBallotOutline} from '@mdi/js'
+import { Field, Form, Formik } from 'formik'
 import Head from 'next/head'
 import React, { ReactElement } from 'react'
 import Button from '../components/Button'
+import Buttons from '../components/Buttons'
+import Divider from '../components/Divider'
 import CardBox from '../components/CardBox'
-import CardBoxComponentEmpty from '../components/CardBox/Component/Empty'
+import FormField from '../components/Form/Field'
 import LayoutAuthenticated from '../layouts/Authenticated'
-import NotificationBar from '../components/NotificationBar'
 import SectionMain from '../components/Section/Main'
 import SectionTitleLineWithButton from '../components/Section/TitleLineWithButton'
-import TableSampleClients from '../components/Table/SampleClients'
-import { getPageTitle } from '../config'
+import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
+import axios from "axios";
 
-const TablesPage = () => {
+interface SubMode {
+    mode: string;
+    duration: string;
+    network:string
+}
+const initialValues: SubMode = {
+    mode: 'jsonrpc',
+    duration: 'weekly',
+    network:'bitcoin'
+};
+const enable=0
+const TablesPage= () => {
+    const handleSubmit = async(sub:SubMode) => {
+        if(enable==0){
+            alert("mainnet coming soooooooooooooon")
+            return
+        }
+        const response= await axios.post(backendURL,{
+            jsonrpc:"2.0",
+            method:"apply",
+            params:[sub.mode,sub.duration, sub.network],
+            id:new Date().getTime()
+        })
+        if(response.data.code==backendSuccessedCode){
+            alert("apply successed");
+        }else{
+            alert(response.data.error);
+        }
+    }
+
+
     return (
         <>
             <Head>
                 <title>{getPageTitle('Mainnet')}</title>
             </Head>
+
             <SectionMain>
-                <SectionTitleLineWithButton icon={mdiTableBorder} title="Mainnet Setting" main>
-                    {/*
-          <Button
-            href="https://github.com/justboil/admin-one-react-tailwind"
-            target="_blank"
-            icon={mdiGithub}
-            label="Star on GitHub"
-            color="contrast"
-            roundedFull
-            small
-          />
-*/}
-                </SectionTitleLineWithButton>
+                <SectionTitleLineWithButton icon={mdiBallotOutline} title="Mainnet Subscription" main> </SectionTitleLineWithButton>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>&nbsp; &nbsp; &nbsp; Subscribe Mode</th>
+                        <th>Effective Duration</th>
+                        <th>Network</th>
+                    </tr>
+                    </thead>
+                </table>
+                <CardBox>
+                    <Formik initialValues={initialValues} onSubmit={handleSubmit} >
+                        <Form>
+                            <FormField >
+                                <Field name="mode" id="mode" component="select">
+                                    <option value="jsonrpc">JSONRPC</option>
+                                    <option value="wss">WSS</option>
+                                    <option value="zmq">ZMQ</option>
+                                    <option value="restful">RESTFUL</option>
+                                </Field>
+                                <Field name="duration" id="duration" component="select">
+                                    <option value="weekly">Weekly</option>
+                                    <option value="month">Month</option>
+                                    <option value="yearly">Yearly</option>
+                                </Field>
 
-                {/*
-        <NotificationBar color="info" icon={mdiMonitorCellphone}>
-          <b>Responsive table.</b> Collapses on mobile
-        </NotificationBar>
-*/}
+                                <Field name="network" id="network" component="select">
+                                    <option value="bitcoin">Bitcoin Mainnet</option>
+                                </Field>
+                            </FormField>
+                            <Buttons>
+                                <Button type="submit" color="info" label="Apply Plan" />
+                            </Buttons>
 
-                <CardBox className="mb-6" hasTable>
-                    <TableSampleClients />
+                            <Divider />
+                        </Form>
+                    </Formik>
                 </CardBox>
 
-                {/*
-        <SectionTitleLineWithButton icon={mdiTableOff} title="Empty variation" />
-
-        <NotificationBar color="danger" icon={mdiTableOff}>
-          <b>Empty card.</b> When there&apos;s nothing to show
-        </NotificationBar>
-
-        <CardBox>
-          <CardBoxComponentEmpty />
-        </CardBox>
+                <CardBox className="mb-6" hasTable>
+{/*
+                    <Subscriptions />
 */}
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Subscription</th>
+                            <th>Working URL</th>
+                            <th>End Time</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </CardBox>
             </SectionMain>
         </>
     )

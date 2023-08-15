@@ -1,7 +1,7 @@
 import { mdiBallotOutline} from '@mdi/js'
 import { Field, Form, Formik } from 'formik'
 import Head from 'next/head'
-import React, { ReactElement } from 'react'
+import React, {ReactElement} from 'react'
 import Button from '../components/Button'
 import Buttons from '../components/Buttons'
 import Divider from '../components/Divider'
@@ -75,7 +75,7 @@ const FormsPage = () => {
                                 </Field>
 
                                 <Field name="network" id="network" component="select">
-                                    <option value="bitcoin">Bitcoin</option>
+                                    <option value="bitcoin">Bitcoin Testnet</option>
                                 </Field>
                             </FormField>
                             <Buttons>

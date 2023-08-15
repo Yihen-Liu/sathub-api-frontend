@@ -24,9 +24,10 @@ export default function LayoutAuthenticated({ children }: Props) {
     useEffect(() => {
         dispatch(
             setUser({
-                name: 'John Doe',
-                email: 'john@example.com',
+                name: 'Anonymous',
+                email: 'hello@example.com',
                 avatar: 'https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93',
+                jwt: localStorage.getItem("sathub-jwt-key")
             })
         )
     })
@@ -110,9 +111,8 @@ export default function LayoutAuthenticated({ children }: Props) {
                 <FooterBar>
                     contract with{` `}
                     <a
-                        href="https://tailwind-react.justboil.me/dashboard"
+                        href="mailto:hello@sathub.io"
                         target="_blank"
-                        rel="noreferrer"
                         className="text-blue-600"
                     >
                         hello@sathub.io

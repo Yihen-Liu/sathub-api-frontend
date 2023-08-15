@@ -10,7 +10,6 @@ import FormField from '../components/Form/Field'
 import FormCheckRadio from '../components/Form/CheckRadio'
 import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
-import { useRouter } from 'next/router'
 import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
 import axios from "axios";
 import {sha256} from "../util/crypto";
@@ -27,7 +26,6 @@ const initialValues: SignupValue = {
 };
 
 export default function Error() {
-    const router = useRouter()
     const handleSubmit = async(values:SignupValue) => {
         if(values.email=="" || values.password==""||values.passwordconfirm==""){
             alert("email or password is empty");

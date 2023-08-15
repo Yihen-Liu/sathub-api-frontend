@@ -2,9 +2,7 @@ import {
     mdiAccount,
     mdiAsterisk,
     mdiFormTextboxPassword,
-    mdiGithub,
     mdiMail,
-    mdiUpload,
 } from '@mdi/js'
 import { Formik, Form, Field } from 'formik'
 import Head from 'next/head'
@@ -16,11 +14,9 @@ import CardBox from '../components/CardBox'
 import CardBoxComponentBody from '../components/CardBox/Component/Body'
 import CardBoxComponentFooter from '../components/CardBox/Component/Footer'
 import FormField from '../components/Form/Field'
-import FormFilePicker from '../components/Form/FilePicker'
 import LayoutAuthenticated from '../layouts/Authenticated'
 import SectionMain from '../components/Section/Main'
 import SectionTitleLineWithButton from '../components/Section/TitleLineWithButton'
-import CardBoxUser from '../components/CardBox/User'
 import type { UserForm } from '../interfaces'
 import { getPageTitle } from '../config'
 import { useAppSelector } from '../stores/hooks'
@@ -41,29 +37,11 @@ const ProfilePage = () => {
             </Head>
 
             <SectionMain>
-                <SectionTitleLineWithButton icon={mdiAccount} title="Profile" main>
-                    {/*
-          <Button
-            href="https://github.com/justboil/admin-one-react-tailwind"
-            target="_blank"
-            icon={mdiGithub}
-            label="Star on GitHub"
-            color="contrast"
-            roundedFull
-            small
-          />
-*/}
-                </SectionTitleLineWithButton>
+                <SectionTitleLineWithButton icon={mdiAccount} title="Profile" main />
 
-                <CardBoxUser className="mb-6" />
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="flex flex-col">
-                        <CardBox className="mb-6">
-                            <FormField label="Avatar" help="Max 500kb">
-                                <FormFilePicker label="Upload" color="info" icon={mdiUpload} />
-                            </FormField>
-                        </CardBox>
 
                         <CardBox className="flex-1" hasComponentLayout>
                             <Formik
@@ -94,7 +72,7 @@ const ProfilePage = () => {
                                     <CardBoxComponentFooter>
                                         <Buttons>
                                             <Button color="info" type="submit" label="Submit" />
-                                            <Button color="info" label="Options" outline />
+                                            <Button color="info" label="Reset" outline />
                                         </Buttons>
                                     </CardBoxComponentFooter>
                                 </Form>
@@ -161,7 +139,7 @@ const ProfilePage = () => {
                                 <CardBoxComponentFooter>
                                     <Buttons>
                                         <Button color="info" type="submit" label="Submit" />
-                                        <Button color="info" label="Options" outline />
+                                        <Button color="info" label="Reset" outline />
                                     </Buttons>
                                 </CardBoxComponentFooter>
                             </Form>

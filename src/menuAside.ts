@@ -13,19 +13,19 @@ const menuAside: MenuAsideItem[] = [
         label: 'Dashboard',
     },
     {
+        href: '/testnet',
+        label: 'Testnet',
+        icon: mdiTable,
+    },
+    {
         href: '/mainnet',
         label: 'Mainnet',
         icon: mdiTable,
     },
     {
-        href: '/testnet',
-        label: 'Testnet',
-        icon: mdiSquareEditOutline,
-    },
-    {
         href: '/lightning',
         label: 'Lightning',
-        icon: mdiSquareEditOutline,
+        icon: mdiTable,
     },
     {
         href: '/profile',

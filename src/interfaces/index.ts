@@ -2,6 +2,7 @@ export type UserPayloadObject = {
     name: string
     email: string
     avatar: string
+    jwt:string
 }
 
 export type MenuAsideItem = {
