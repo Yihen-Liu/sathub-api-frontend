@@ -13,6 +13,7 @@ import SectionTitleLineWithButton from '../components/Section/TitleLineWithButto
 import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
 import Subscriptions from "../components/Table/Subscription";
 import axios from "axios";
+import {useAppSelector} from "../stores/hooks";
 
 interface SubMode {
     mode: string;
@@ -26,13 +27,19 @@ const initialValues: SubMode = {
 };
 
 const FormsPage = () => {
+    const jwt = useAppSelector((state) => state.main.jwt)
     const handleSubmit = async(sub:SubMode) => {
+
+        // 设置请求头，将 JWT 值添加到 Authorization 字段
+        const headers = {
+            Authorization: `Bearer ${jwt}`
+        };
         const response= await axios.post(backendURL,{
             jsonrpc:"2.0",
             method:"apply",
             params:[sub.mode,sub.duration, sub.network],
             id:new Date().getTime()
-        })
+        },{headers})
         if(response.data.code==backendSuccessedCode){
             alert("apply successed");
         }else{

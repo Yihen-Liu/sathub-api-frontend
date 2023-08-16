@@ -80,3 +80,17 @@ export type UserForm = {
     name: string
     email: string
 }
+export type PasswordForm = {
+    currentPassword: string
+    newPassword: string
+    newPasswordConfirmation:string
+}
+export type LoginForm = {
+    email: string
+    password: string
+}
+export type SignupForm = {
+    email: string
+    password: string
+    passwordconfirm: string
+}

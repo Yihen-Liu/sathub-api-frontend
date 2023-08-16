@@ -13,12 +13,9 @@ import Buttons from '../components/Buttons'
 import Button from '../components/Button'
 import axios from "axios";
 import {sha256} from "../util/crypto";
+import {LoginForm} from "../interfaces";
 
-interface LoginValue {
-    email: string;
-    password: string;
-}
-const initialValues: LoginValue = {
+const initialLoginForm: LoginForm = {
     email: '',
     password: '',
 };
@@ -26,7 +23,7 @@ const initialValues: LoginValue = {
 const StyleSelect = () => {
     const router = useRouter()
 
-    const handleSubmit = async(values:LoginValue) => {
+    const handleSubmit = async(values:LoginForm) => {
         const response= await axios.post(backendURL,{
             jsonrpc:"2.0",
             method:"login",
@@ -34,8 +31,6 @@ const StyleSelect = () => {
             id:new Date().getTime()
         })
         if(response.data.code==backendSuccessedCode){
-            console.log("response.data:",response.data.result)
-            //setJwt(response.data.result)
             localStorage.setItem("sathub-jwt-key",response.data.result)
             await router.push('/dashboard')
         }else{
@@ -53,7 +48,7 @@ const StyleSelect = () => {
                     Bitcoin-Only Service Provider &nbsp; &nbsp;
                 </h1>
                 <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
-                    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+                    <Formik initialValues={initialLoginForm} onSubmit={handleSubmit}>
                         <Form>
                             <FormField label="Email" help="Please enter your email">
                                 <Field name="email" />

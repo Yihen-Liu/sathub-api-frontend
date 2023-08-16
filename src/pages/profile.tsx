@@ -17,17 +17,79 @@ import FormField from '../components/Form/Field'
 import LayoutAuthenticated from '../layouts/Authenticated'
 import SectionMain from '../components/Section/Main'
 import SectionTitleLineWithButton from '../components/Section/TitleLineWithButton'
-import type { UserForm } from '../interfaces'
-import { getPageTitle } from '../config'
-import { useAppSelector } from '../stores/hooks'
+import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
+import axios from "axios";
+import {sha256} from "../util/crypto";
+import {useAppSelector} from "../stores/hooks";
+import {PasswordForm, UserForm} from "../interfaces";
+import {useRouter} from "next/router";
 
 const ProfilePage = () => {
-    const userName = useAppSelector((state) => state.main.userName)
-    const userEmail = useAppSelector((state) => state.main.userEmail)
+    const jwt = useAppSelector((state) => state.main.jwt)
+    const router = useRouter()
+    const initialUserForm: UserForm = {
+        email: '',
+        name: '',
+    };
 
-    const userForm: UserForm = {
-        name: userName,
-        email: userEmail,
+    const initialPasswordForm: PasswordForm = {
+        currentPassword: '',
+        newPassword: '',
+        newPasswordConfirmation: '',
+    };
+
+    const handleUserFormSubmit = async(values:UserForm) => {
+        if(values.email=="" || values.name==""){
+            alert("email or password is empty");
+            return
+        }
+
+        // 设置请求头，将 JWT 值添加到 Authorization 字段
+        const headers = {
+            Authorization: `Bearer ${jwt}`
+        };
+        const response= await axios.post(backendURL,{
+            jsonrpc:"2.0",
+            method:"updateProfile",
+            params:[values.email, values.name],
+            id:new Date().getTime()
+        },{headers})
+        if(response.data.code==backendSuccessedCode){
+            alert("update email and username successed");
+            await router.push("/")
+        }else{
+            alert(response.data.error)
+        }
+    }
+
+    const handlePasswordFormSubmit = async(values:PasswordForm) => {
+        if(values.currentPassword=="" || values.newPassword=="" || values.newPasswordConfirmation==""){
+            alert("current or new password is empty");
+            return
+        }
+        if(values.newPassword!=values.newPasswordConfirmation){
+            alert("new password is not match");
+            return
+        }
+
+        // 设置请求头，将 JWT 值添加到 Authorization 字段
+        const headers = {
+            Authorization: `Bearer ${jwt}`
+        };
+
+        const response= await axios.post(backendURL,{
+            jsonrpc:"2.0",
+            method:"updatePassword",
+            params:[sha256(values.currentPassword,"hex"), sha256(values.newPassword, "hex")],
+            id:new Date().getTime()
+        },{headers})
+
+        if(response.data.code==backendSuccessedCode){
+            alert("update password successed");
+            await router.push("/")
+        }else{
+            alert(response.data.error)
+        }
     }
 
     return (
@@ -44,12 +106,7 @@ const ProfilePage = () => {
                     <div className="flex flex-col">
 
                         <CardBox className="flex-1" hasComponentLayout>
-                            <Formik
-                                initialValues={userForm}
-                                onSubmit={(values: UserForm) =>
-                                    alert(JSON.stringify(values, null, 2))
-                                }
-                            >
+                            <Formik initialValues={initialUserForm} onSubmit={handleUserFormSubmit} >
                                 <Form className="flex flex-col flex-1">
                                     <CardBoxComponentBody>
                                         <FormField
@@ -82,12 +139,8 @@ const ProfilePage = () => {
 
                     <CardBox hasComponentLayout>
                         <Formik
-                            initialValues={{
-                                currentPassword: '',
-                                newPassword: '',
-                                newPasswordConfirmation: '',
-                            }}
-                            onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+                            initialValues={initialPasswordForm}
+                            onSubmit={handlePasswordFormSubmit}
                         >
                             <Form className="flex flex-col flex-1">
                                 <CardBoxComponentBody>

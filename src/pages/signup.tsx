@@ -13,20 +13,16 @@ import Buttons from '../components/Buttons'
 import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
 import axios from "axios";
 import {sha256} from "../util/crypto";
+import {SignupForm} from "../interfaces";
 
-interface SignupValue {
-    email: string;
-    password: string;
-    passwordconfirm: string;
-}
-const initialValues: SignupValue = {
+const initialSignupForm: SignupForm = {
     email: '',
     password: '',
     passwordconfirm: '',
 };
 
 export default function Error() {
-    const handleSubmit = async(values:SignupValue) => {
+    const handleSubmit = async(values:SignupForm) => {
         if(values.email=="" || values.password==""||values.passwordconfirm==""){
             alert("email or password is empty");
             return
@@ -60,7 +56,7 @@ export default function Error() {
                     Bitcoin-Only Service Provider &nbsp; &nbsp;
                 </h1>
                 <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
-                    <Formik initialValues={initialValues} onSubmit={handleSubmit} >
+                    <Formik initialValues={initialSignupForm} onSubmit={handleSubmit} >
                         <Form>
                             <FormField label="Email" help="Please enter your email">
                                 <Field name="email" />
