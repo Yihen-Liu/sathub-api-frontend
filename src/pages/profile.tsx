@@ -26,6 +26,7 @@ import {useRouter} from "next/router";
 
 const ProfilePage = () => {
     const jwt = useAppSelector((state) => state.main.jwt)
+    const email = useAppSelector((state) => state.main.userEmail)
     const router = useRouter()
     const initialUserForm: UserForm = {
         email: '',
@@ -123,7 +124,7 @@ const ProfilePage = () => {
                                             labelFor="email"
                                             icons={[mdiMail]}
                                         >
-                                            <Field name="email" id="email" placeholder="E-mail" />
+                                            <Field name="email" id="email" placeholder={email} />
                                         </FormField>
                                     </CardBoxComponentBody>
                                     <CardBoxComponentFooter>

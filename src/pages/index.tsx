@@ -24,6 +24,10 @@ const StyleSelect = () => {
     const router = useRouter()
 
     const handleSubmit = async(values:LoginForm) => {
+        if(values.email=="" || values.password==""){
+            alert("email or password is null")
+            return
+        }
         const response= await axios.post(backendURL,{
             jsonrpc:"2.0",
             method:"login",
@@ -32,6 +36,7 @@ const StyleSelect = () => {
         })
         if(response.data.code==backendSuccessedCode){
             localStorage.setItem("sathub-jwt-key",response.data.result)
+            localStorage.setItem("sathub-user-email",values.email)
             await router.push('/dashboard')
         }else{
             alert(response.data.error)
