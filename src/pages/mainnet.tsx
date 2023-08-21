@@ -82,7 +82,7 @@ const TablesPage= () => {
                                 </Field>
                             </FormField>
                             <Buttons>
-                                <Button type="submit" color="info" label="Apply Plan" />
+                                <Button type="submit" color="contrast" label="Apply Plan" />
                             </Buttons>
 
                             <Divider />

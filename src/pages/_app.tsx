@@ -7,7 +7,6 @@ import Head from 'next/head'
 import { store } from '../stores/store'
 import { Provider } from 'react-redux'
 import '../css/main.css'
-import {RecoilRoot} from "recoil";
 
 export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode
@@ -35,7 +34,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const imageHeight = '960'
 
     return (
-        <RecoilRoot>
         <Provider store={store}>
             {getLayout(
                 <>
@@ -79,7 +77,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                 </>
             )}
         </Provider>
-        </RecoilRoot>
     )
 }
 

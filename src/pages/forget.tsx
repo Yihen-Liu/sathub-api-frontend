@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import React, { ReactElement } from 'react'
 import CardBox from '../components/CardBox'
 import LayoutGuest from '../layouts/Guest'
@@ -7,7 +6,6 @@ import {appTitle, backendSuccessedCode, backendURL} from '../config'
 import SectionFullScreen from '../components/Section/FullScreen'
 import { Field, Form, Formik } from 'formik'
 import FormField from '../components/Form/Field'
-import FormCheckRadio from '../components/Form/CheckRadio'
 import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
 import Button from '../components/Button'
@@ -21,24 +19,20 @@ const initialLoginForm: LoginForm = {
 };
 
 const StyleSelect = () => {
-    const router = useRouter()
 
     const handleSubmit = async(values:LoginForm) => {
         if(values.email=="" || values.password==""){
-            alert("email or password is null")
+            alert("email is null")
             return
         }
         const response= await axios.post(backendURL,{
             jsonrpc:"2.0",
-            method:"login",
+            method:"applyResetPassword",
             params:[values.email,sha256(values.password,"hex")],
             id:new Date().getTime()
         })
         if(response.data.code==backendSuccessedCode){
-            localStorage.setItem("sathub-jwt-key",response.data.result.token)
-            localStorage.setItem("sathub-user-name", response.data.result.username)
-            localStorage.setItem("sathub-user-email",values.email)
-            await router.push('/dashboard')
+            alert("reset email has been sent to "+values.email);
         }else{
             alert(response.data.error)
         }
@@ -50,28 +44,18 @@ const StyleSelect = () => {
             </Head>
 
             <SectionFullScreen bg="">
-                <h1 className="text-6xl md:text-6xl text-center text-black font-bold mt-12 mb-3 lg:mt-0">
-                    Bitcoin Only Service Provider &nbsp; &nbsp;
-                </h1>
                 <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
                     <Formik initialValues={initialLoginForm} onSubmit={handleSubmit}>
                         <Form>
-                            <FormField label="Email" help="Please enter your email">
+                            <FormField label="Email" help="Please enter your email to reset password">
                                 <Field name="email" />
                             </FormField>
 
-                            <FormField label="Password" help="Please enter your password">
-                                <Field name="password" type="password" />
-                            </FormField>
-
-                            <a href="/sathub/forget" target="_blank" className="text-gray-500">
-                                Forget Your Password?
-                            </a>
                             <Divider />
 
                             <Buttons>
-                                <Button type="submit" label="Login" color="contrast" />
-                                <Button href="/signup" label="Signup" color="contrast" outline />
+                                <Button type="submit" label="Send" color="contrast" />
+                                <Button href="/" label="Home" color="contrast" outline />
                             </Buttons>
                         </Form>
                     </Formik>

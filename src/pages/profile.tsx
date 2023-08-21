@@ -27,6 +27,7 @@ import {useRouter} from "next/router";
 const ProfilePage = () => {
     const jwt = useAppSelector((state) => state.main.jwt)
     const email = useAppSelector((state) => state.main.userEmail)
+    const name = useAppSelector((state) => state.main.userName)
     const router = useRouter()
     const initialUserForm: UserForm = {
         email: '',
@@ -116,7 +117,7 @@ const ProfilePage = () => {
                                             labelFor="name"
                                             icons={[mdiAccount]}
                                         >
-                                            <Field name="name" id="name" placeholder="Name" />
+                                            <Field name="name" id="name" placeholder={name} />
                                         </FormField>
                                         <FormField
                                             label="E-mail"
@@ -129,8 +130,8 @@ const ProfilePage = () => {
                                     </CardBoxComponentBody>
                                     <CardBoxComponentFooter>
                                         <Buttons>
-                                            <Button color="info" type="submit" label="Submit" />
-                                            <Button color="info" label="Reset" outline />
+                                            <Button color="contrast" type="submit" label="Submit" />
+                                            <Button color="contrast" label="Reset" outline />
                                         </Buttons>
                                     </CardBoxComponentFooter>
                                 </Form>
@@ -192,8 +193,8 @@ const ProfilePage = () => {
 
                                 <CardBoxComponentFooter>
                                     <Buttons>
-                                        <Button color="info" type="submit" label="Submit" />
-                                        <Button color="info" label="Reset" outline />
+                                        <Button color="contrast" type="submit" label="Submit" />
+                                        <Button color="contrast" label="Reset" outline />
                                     </Buttons>
                                 </CardBoxComponentFooter>
                             </Form>

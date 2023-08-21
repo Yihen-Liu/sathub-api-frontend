@@ -24,7 +24,7 @@ export default function LayoutAuthenticated({ children }: Props) {
     useEffect(() => {
         dispatch(
             setUser({
-                name: 'Anonymous',
+                name: localStorage.getItem("sathub-user-name"),
                 email: localStorage.getItem("sathub-user-email"),
                 avatar: 'https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93',
                 jwt: localStorage.getItem("sathub-jwt-key")
@@ -116,6 +116,14 @@ export default function LayoutAuthenticated({ children }: Props) {
                         className="text-blue-600"
                     >
                         hello@sathub.io
+                    </a>
+                    ,&nbsp;join in{` `}
+                    <a
+                        href="https://discord.gg/PPB8jRXTzP"
+                        target="_blank"
+                        className="text-blue-600"
+                    >
+                      Discord
                     </a>
                 </FooterBar>
             </div>

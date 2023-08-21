@@ -57,6 +57,22 @@ const Dashboard = () => {
                             3. In the third stage, sathub will provide lightning network gateway services;
                         </p>
                 </CardBox>
+                <SectionTitleLineWithButton icon={mdiSquareEditOutline} title="Documents" />
+
+                <CardBox>
+
+                    <p>
+                       <a href="https://developer.bitcoin.org/reference/rpc/index.html" target="_blank">1. Jsonrpc Document Link</a>
+                    </p>
+                    <br/>
+                    <p>
+                       <a href="https://github.com/bitcoin/bitcoin/blob/master/doc/REST-interface.md" target="_blank">2. Restful Document Link</a>
+                    </p>
+                    <br/>
+                    <p>
+                        <a href="https://github.com/bitcoin/bitcoin/blob/master/doc/zmq.md" target="_blank">3. Zmq(Wss) Document Link</a>
+                    </p>
+                </CardBox>
             </SectionMain>
         </>
     )

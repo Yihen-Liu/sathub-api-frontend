@@ -13,6 +13,7 @@ import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
 import axios from "axios";
 import {sha256} from "../util/crypto";
 import {SignupForm} from "../interfaces";
+import {useRouter} from "next/router";
 
 const initialSignupForm: SignupForm = {
     email: '',
@@ -21,9 +22,10 @@ const initialSignupForm: SignupForm = {
 };
 
 export default function Error() {
+    const router = useRouter()
     const handleSubmit = async(values:SignupForm) => {
-        if(values.email=="" || values.password==""||values.passwordconfirm==""){
-            alert("email or password is empty");
+        if(values.password==""||values.passwordconfirm==""){
+            alert("password or passwordconfirm is empty");
             return
         }
         if(values.password!==values.passwordconfirm){
@@ -32,13 +34,13 @@ export default function Error() {
         }
         const response= await axios.post(backendURL,{
             jsonrpc:"2.0",
-            method:"signup",
-            params:[values.email, sha256(values.password,"hex")],
+            method:"updatePassword",
+            params:[sha256(values.password,"hex")],
             id:new Date().getTime()
         })
         if(response.data.code==backendSuccessedCode){
-            alert("please check your "+values.email+ " inbox");
-            //await router.push('/dashboard')
+            alert("update password successed");
+            await router.push("/");
         }else{
             alert(response.data.error)
         }
@@ -51,23 +53,16 @@ export default function Error() {
             </Head>
 
             <SectionFullScreen bg="">
-                <h1 className="text-6xl md:text-6xl text-center text-black font-bold mt-12 mb-3 lg:mt-0">
-                    Bitcoin Only Service Provider &nbsp; &nbsp;
-                </h1>
                 <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
                     <Formik initialValues={initialSignupForm} onSubmit={handleSubmit} >
                         <Form>
-                            <FormField label="Email" help="Please enter your email">
-                                <Field name="email" />
-                            </FormField>
-
-                            <FormField label="Password" help="Please enter your password">
+                            <FormField label="New Password" help="Please enter your new password">
                                 <Field name="password" type="password" />
                             </FormField>
 
                             <FormField
-                                label="Password Confirm"
-                                help="Please enter your password again"
+                                label="New Password Confirm"
+                                help="Please enter your new password again"
                             >
                                 <Field name="passwordconfirm" type="password" />
                             </FormField>
@@ -75,7 +70,7 @@ export default function Error() {
                             <Divider />
 
                             <Buttons>
-                                <Button type="submit" label="Signup" color="contrast" />
+                                <Button type="submit" label="Submit" color="contrast" />
                                 <Button href="/" label="Home" color="contrast" outline />
                             </Buttons>
                         </Form>
