@@ -1,8 +1,9 @@
 export type UserPayloadObject = {
     name: string
     email: string
-    avatar: string
+    avatar?: string
     jwt:string
+    btcaddress:string
 }
 
 export type MenuAsideItem = {
@@ -93,4 +94,7 @@ export type SignupForm = {
     email: string
     password: string
     passwordconfirm: string
+}
+export type InvoiceForm = {
+    amount:string
 }

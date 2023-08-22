@@ -132,7 +132,7 @@ const ProfilePage = () => {
                                     <CardBoxComponentFooter>
                                         <Buttons>
                                             <Button color="contrast" type="submit" label="Submit" />
-                                            <Button color="contrast" label="Reset" outline />
+                                            <Button color="contrast" type="reset" label="Reset" outline />
                                         </Buttons>
                                     </CardBoxComponentFooter>
                                 </Form>
@@ -195,7 +195,7 @@ const ProfilePage = () => {
                                 <CardBoxComponentFooter>
                                     <Buttons>
                                         <Button color="contrast" type="submit" label="Submit" />
-                                        <Button color="contrast" label="Reset" outline />
+                                        <Button color="contrast" type="reset" label="Reset" outline />
                                     </Buttons>
                                 </CardBoxComponentFooter>
                             </Form>

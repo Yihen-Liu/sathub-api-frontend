@@ -26,8 +26,8 @@ export default function LayoutAuthenticated({ children }: Props) {
             setUser({
                 name: localStorage.getItem("sathub-user-name"),
                 email: localStorage.getItem("sathub-user-email"),
-                avatar: 'https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93',
-                jwt: localStorage.getItem("sathub-jwt-key")
+                jwt: localStorage.getItem("sathub-jwt-key"),
+                btcaddress:localStorage.getItem("sathub-donate-btcaddress")
             })
         )
     })

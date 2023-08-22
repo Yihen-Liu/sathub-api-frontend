@@ -37,6 +37,7 @@ const StyleSelect = () => {
             localStorage.setItem("sathub-jwt-key",response.data.result.token)
             localStorage.setItem("sathub-user-name", response.data.result.username)
             localStorage.setItem("sathub-user-email",values.email)
+            localStorage.setItem("sathub-donate-btcaddress", response.data.result.btcaddress)
             await router.push('/dashboard')
         }else{
             alert(response.data.error)
