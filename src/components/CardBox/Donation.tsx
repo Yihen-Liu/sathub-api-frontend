@@ -37,6 +37,12 @@ export const BitcoinDonation = ({ className }: Props) => {
                             fgColor={"#000000"}
                             level={"L"}
                             includeMargin={true}
+                            imageSettings={{ // 二维码中间的logo图片
+                                src: '/sathub/btc-logo.png',
+                                height: 35,
+                                width: 35,
+                                excavate: true, // 中间图片所在的位置是否镂空
+                            }}
                         />
                     </div>
                     <div className="space-y-3 text-center md:text-left lg:mx-12">
@@ -87,6 +93,12 @@ export const LightningDonation = ({ className }: Props) => {
                         fgColor={"#000000"}
                         level={"L"}
                         includeMargin={true}
+                        imageSettings={{ // 二维码中间的logo图片
+                            src: '/sathub/ln-logo.png',
+                            height: 35,
+                            width: 35,
+                            excavate: true, // 中间图片所在的位置是否镂空
+                        }}
                     />
                 </div>
                 <div className="space-y-3 text-center md:text-left lg:mx-12">
