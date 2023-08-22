@@ -98,9 +98,10 @@ const TablesPage= () => {
                     <table>
                         <thead>
                         <tr>
-                            <th>Subscription</th>
-                            <th>Working URL</th>
-                            <th>End Time</th>
+                            <th className='text-center'>Subscription</th>
+                            <th className='text-center'>Working URL</th>
+                            <th className='text-center'>End Time</th>
+                            <th className='text-center'>Upgrade</th>
                         </tr>
                         </thead>
                     </table>
