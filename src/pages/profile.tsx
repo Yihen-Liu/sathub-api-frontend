@@ -41,11 +41,12 @@ const ProfilePage = () => {
     };
 
     const handleUserFormSubmit = async(values:UserForm) => {
-        if(values.email=="" || values.name==""){
+        if(values.email=="" && values.name==""){
             alert("email or password is empty");
             return
         }
-
+        values.email = values.email==""?email:values.email;
+        values.name = values.name==""?name:values.name;
         // 设置请求头，将 JWT 值添加到 Authorization 字段
         const headers = {
             Authorization: `Bearer ${jwt}`

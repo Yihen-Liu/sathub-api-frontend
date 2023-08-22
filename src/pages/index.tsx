@@ -7,7 +7,6 @@ import {appTitle, backendSuccessedCode, backendURL} from '../config'
 import SectionFullScreen from '../components/Section/FullScreen'
 import { Field, Form, Formik } from 'formik'
 import FormField from '../components/Form/Field'
-import FormCheckRadio from '../components/Form/CheckRadio'
 import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
 import Button from '../components/Button'
@@ -49,7 +48,7 @@ const StyleSelect = () => {
                 <title>{appTitle}</title>
             </Head>
 
-            <SectionFullScreen bg="">
+            <SectionFullScreen bg="white">
                 <h1 className="text-6xl md:text-6xl text-center text-black font-bold mt-12 mb-3 lg:mt-0">
                     Bitcoin Only Service Provider &nbsp; &nbsp;
                 </h1>

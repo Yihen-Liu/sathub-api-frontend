@@ -1,5 +1,4 @@
 import React from 'react'
-import Script from 'next/script'
 import type { AppProps } from 'next/app'
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
@@ -20,12 +19,12 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     // Use the layout defined at the page level, if available
     const getLayout = Component.getLayout || ((page) => page)
 
-    const title = `Admin One React Tailwind free`
+    const title = `Bitcoin Node Service Provider`
 
     const description =
-        'Admin One - free React Next Tailwind dashboard with TypeScript and dark mode'
+        'Sathub provides four types of services, namely: Jsonrpc, Restful, Zmq, Wss; Contain bitcoin mainnet/testnet and lightning node service'
 
-    const url = 'https://justboil.github.io/admin-one-react-tailwind/'
+    const url = 'http://sathub.io/'
 
     const image = `https://static.justboil.me/templates/one/repo-tailwind-react.png`
 
@@ -41,7 +40,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                         <meta name="description" content={description} />
 
                         <meta property="og:url" content={url} />
-                        <meta property="og:site_name" content="JustBoil.me" />
+                        <meta property="og:site_name" content="sathub.io" />
                         <meta property="og:title" content={title} />
                         <meta property="og:description" content={description} />
                         <meta property="og:image" content={image} />
@@ -59,6 +58,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                         <link rel="icon" href="/sathub/favicon.png" />
                     </Head>
 
+{/*
                     <Script
                         src="https://www.googletagmanager.com/gtag/js?id=UA-130795909-1"
                         strategy="afterInteractive"
@@ -72,6 +72,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                           gtag('config', 'UA-130795909-1');
                         `}
                     </Script>
+*/}
 
                    <Component {...pageProps} />
                 </>
