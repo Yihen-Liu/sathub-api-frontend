@@ -1,8 +1,7 @@
 import {
-    mdiAccountCircle,
+    mdiAccountCircle, mdiCoffee,
     mdiMonitor,
-    mdiSquareEditOutline,
-    mdiTable, mdiWallet,
+    mdiTable,
 } from '@mdi/js'
 import { MenuAsideItem } from './interfaces'
 
@@ -35,7 +34,7 @@ const menuAside: MenuAsideItem[] = [
     {
         href: '/donate',
         label: 'Donate',
-        icon: mdiWallet,
+        icon: mdiCoffee,
     },
 ]
 

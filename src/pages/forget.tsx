@@ -10,25 +10,24 @@ import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
 import Button from '../components/Button'
 import axios from "axios";
-import {sha256} from "../util/crypto";
-import {LoginForm} from "../interfaces";
+import {ResetForm} from "../interfaces";
 
-const initialLoginForm: LoginForm = {
+const initialResetForm: ResetForm = {
     email: '',
     password: '',
 };
 
 const StyleSelect = () => {
-
-    const handleSubmit = async(values:LoginForm) => {
-        if(values.email=="" || values.password==""){
+    const handleSubmit = async(values:ResetForm) => {
+        if(values.email==""){
             alert("email is null")
             return
         }
+
         const response= await axios.post(backendURL,{
             jsonrpc:"2.0",
             method:"applyResetPassword",
-            params:[values.email,sha256(values.password,"hex")],
+            params:[values.email],
             id:new Date().getTime()
         })
         if(response.data.code==backendSuccessedCode){
@@ -45,7 +44,7 @@ const StyleSelect = () => {
 
             <SectionFullScreen bg="white">
                 <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
-                    <Formik initialValues={initialLoginForm} onSubmit={handleSubmit}>
+                    <Formik initialValues={initialResetForm} onSubmit={handleSubmit}>
                         <Form>
                             <FormField label="Email" help="Please enter your email to reset password">
                                 <Field name="email" />

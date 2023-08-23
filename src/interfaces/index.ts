@@ -98,3 +98,9 @@ export type SignupForm = {
 export type InvoiceForm = {
     amount:string
 }
+export type ResetForm = {
+    email?: string
+    password?: string
+    confirmpassword?:string
+    code?:string
+}
