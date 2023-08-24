@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React, { ReactElement } from 'react'
 import CardBox from '../components/CardBox'
 import LayoutGuest from '../layouts/Guest'
-import {appTitle, backendSuccessedCode, backendURL} from '../config'
+import {appTitle, backendSuccessedCode, backendURL, getPageTitle} from '../config'
 import SectionFullScreen from '../components/Section/FullScreen'
 import { Field, Form, Formik } from 'formik'
 import FormField from '../components/Form/Field'
@@ -46,7 +46,7 @@ const StyleSelect = () => {
     return (
         <>
             <Head>
-                <title>{appTitle}</title>
+                <title>{getPageTitle('Index')}</title>
             </Head>
 
             <SectionFullScreen bg="white">

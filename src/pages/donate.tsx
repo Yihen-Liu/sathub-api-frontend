@@ -9,7 +9,7 @@ const ProfilePage = () => {
     return (
         <>
             <Head>
-                <title>{getPageTitle('Profile')}</title>
+                <title>{getPageTitle('Donate')}</title>
             </Head>
 
             <SectionMain>

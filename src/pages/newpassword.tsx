@@ -9,7 +9,7 @@ import { Field, Form, Formik } from 'formik'
 import FormField from '../components/Form/Field'
 import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
-import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
+import {appTitle, backendSuccessedCode, backendURL, getPageTitle} from '../config'
 import axios from "axios";
 import {sha256} from "../util/crypto";
 import {ResetForm} from "../interfaces";
@@ -55,7 +55,7 @@ export default function Error() {
     return (
         <>
             <Head>
-                <title>{getPageTitle('Signup')}</title>
+                <title>{getPageTitle('NewPassword')}</title>
             </Head>
 
             <SectionFullScreen bg="white">
