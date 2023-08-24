@@ -1,4 +1,4 @@
-import {mdiBallotOutline, mdiHistory} from '@mdi/js'
+import {mdiBallotOutline} from '@mdi/js'
 import { Field, Form, Formik } from 'formik'
 import Head from 'next/head'
 import React, {ReactElement} from 'react'

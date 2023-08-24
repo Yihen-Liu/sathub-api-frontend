@@ -10,8 +10,6 @@ import AsideMenu from '../components/AsideMenu'
 import FooterBar from '../components/FooterBar'
 import { setUser } from '../stores/mainSlice'
 import { useAppDispatch, useAppSelector } from '../stores/hooks'
-import FormField from '../components/Form/Field'
-import { Field, Form, Formik } from 'formik'
 import { useRouter } from 'next/router'
 
 type Props = {

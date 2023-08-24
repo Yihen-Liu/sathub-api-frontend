@@ -1,14 +1,9 @@
-import {mdiBallotOutline, mdiGithub, mdiMonitorCellphone, mdiTableBorder, mdiTableOff} from '@mdi/js'
+import {mdiBallotOutline} from '@mdi/js'
 import Head from 'next/head'
 import React, { ReactElement } from 'react'
-import Button from '../components/Button'
-import CardBox from '../components/CardBox'
-import CardBoxComponentEmpty from '../components/CardBox/Component/Empty'
 import LayoutAuthenticated from '../layouts/Authenticated'
-import NotificationBar from '../components/NotificationBar'
 import SectionMain from '../components/Section/Main'
 import SectionTitleLineWithButton from '../components/Section/TitleLineWithButton'
-import TableSampleClients from '../components/Table/SampleClients'
 import { getPageTitle } from '../config'
 
 const TablesPage = () => {
