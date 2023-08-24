@@ -1,4 +1,4 @@
-import { mdiBallotOutline} from '@mdi/js'
+import {mdiBallotOutline, mdiHistory} from '@mdi/js'
 import { Field, Form, Formik } from 'formik'
 import Head from 'next/head'
 import React, {ReactElement} from 'react'
@@ -11,7 +11,7 @@ import LayoutAuthenticated from '../layouts/Authenticated'
 import SectionMain from '../components/Section/Main'
 import SectionTitleLineWithButton from '../components/Section/TitleLineWithButton'
 import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
-import Subscriptions from "../components/Table/Subscription";
+import {Subscriptions, SubscriptionHistory} from "../components/Table/Subscription";
 import axios from "axios";
 import {useAppSelector} from "../stores/hooks";
 
@@ -97,6 +97,13 @@ const FormsPage = () => {
                 <CardBox className="mb-6" hasTable>
                     <Subscriptions />
                 </CardBox>
+{/*
+                <SectionTitleLineWithButton icon={mdiHistory} title="History" main> </SectionTitleLineWithButton>
+                <CardBox hasTable>
+                    <SubscriptionHistory />
+                </CardBox>
+*/}
+                <SubscriptionHistory />
             </SectionMain>
         </>
     )

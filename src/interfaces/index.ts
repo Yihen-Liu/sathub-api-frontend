@@ -71,6 +71,7 @@ export type Client = {
 }
 
 export type Subscription ={
+    id:number
     mode: string
     url:string
     endtime:string

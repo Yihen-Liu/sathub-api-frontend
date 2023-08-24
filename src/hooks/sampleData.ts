@@ -36,3 +36,11 @@ export const useSubscribe = (jwtToken:string) => {
         isError: error,
     }
 }
+export const useSubscribeHistory = (jwtToken:string) => {
+    const { data, error } = useSWR([backendURL+"/subscriptionHistory",jwtToken], fetcherWithJwt);
+    return {
+        subscriptions: data,
+        isLoading: !error && !data,
+        isError: error,
+    }
+}

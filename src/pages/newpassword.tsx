@@ -38,7 +38,6 @@ export default function Error() {
             return
         }
 
-        console.log("query param:", router.query)
         const response= await axios.post(backendURL,{
             jsonrpc:"2.0",
             method:"doResetPassword",
