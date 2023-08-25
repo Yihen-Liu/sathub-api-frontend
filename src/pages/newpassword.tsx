@@ -9,7 +9,7 @@ import { Field, Form, Formik } from 'formik'
 import FormField from '../components/Form/Field'
 import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
-import {appTitle, backendSuccessedCode, backendURL, getPageTitle} from '../config'
+import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
 import axios from "axios";
 import {sha256} from "../util/crypto";
 import {ResetForm} from "../interfaces";
