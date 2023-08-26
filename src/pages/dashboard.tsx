@@ -62,15 +62,15 @@ const Dashboard = () => {
                 <CardBox>
 
                     <p>
-                       <a href="https://developer.bitcoin.org/reference/rpc/index.html" target="_blank">1. Jsonrpc Document Link</a>
+                       <a href="https://developer.bitcoin.org/reference/rpc/index.html" target="_blank" className="hover:text-blue-500">1. Jsonrpc Document Link</a>
                     </p>
                     <br/>
                     <p>
-                       <a href="https://github.com/bitcoin/bitcoin/blob/master/doc/REST-interface.md" target="_blank">2. Restful Document Link</a>
+                       <a href="https://github.com/bitcoin/bitcoin/blob/master/doc/REST-interface.md" target="_blank" className="hover:text-blue-500">2. Restful Document Link</a>
                     </p>
                     <br/>
                     <p>
-                        <a href="https://github.com/bitcoin/bitcoin/blob/master/doc/zmq.md" target="_blank">3. Zmq(Wss) Document Link</a>
+                        <a href="https://github.com/bitcoin/bitcoin/blob/master/doc/zmq.md" target="_blank" className="hover:text-blue-500">3. Zmq(Wss) Document Link</a>
                     </p>
                 </CardBox>
             </SectionMain>

@@ -111,17 +111,25 @@ export default function LayoutAuthenticated({ children }: Props) {
                     <a
                         href="mailto:hello@sathub.io"
                         target="_blank"
-                        className="text-blue-600"
+                        className="text-blue-500"
                     >
-                        hello@sathub.io
+                        Hello@sathub.io
                     </a>
                     ,&nbsp;join in{` `}
                     <a
                         href="https://discord.gg/PPB8jRXTzP"
                         target="_blank"
-                        className="text-blue-600"
+                        className="text-blue-500"
                     >
                       Discord
+                    </a>
+                    ,&nbsp;feedback by{` `}
+                    <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSdEhGAOvRqpApwm4BDsWnkSi-dpMM-kjuu12d0nK0FzckWprw/viewform?usp=sf_link"
+                        target="_blank"
+                        className="text-blue-500"
+                    >
+                        Forms
                     </a>
                 </FooterBar>
             </div>
