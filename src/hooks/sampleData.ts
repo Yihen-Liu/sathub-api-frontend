@@ -28,16 +28,16 @@ export const useSampleTransactions = () => {
     }
 }
 
-export const useSubscribe = (jwtToken:string) => {
-    const { data, error } = useSWR([backendURL+"/subscription",jwtToken], fetcherWithJwt);
+export const useSubscribe = (jwtToken:string, network:string) => {
+    const { data, error } = useSWR([backendURL+"/subscription?network="+network,jwtToken], fetcherWithJwt);
     return {
         subscriptions: data,
         isLoading: !error && !data,
         isError: error,
     }
 }
-export const useSubscribeHistory = (jwtToken:string) => {
-    const { data, error } = useSWR([backendURL+"/subscriptionHistory",jwtToken], fetcherWithJwt);
+export const useSubscribeHistory = (jwtToken:string, network:string) => {
+    const { data, error } = useSWR([backendURL+"/subscriptionHistory?network="+network,jwtToken], fetcherWithJwt);
     return {
         subscriptions: data,
         isLoading: !error && !data,

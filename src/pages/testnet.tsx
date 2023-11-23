@@ -29,7 +29,6 @@ const initialValues: SubMode = {
 const FormsPage = () => {
     const jwt = useAppSelector((state) => state.main.jwt)
     const handleSubmit = async(sub:SubMode) => {
-
         // 设置请求头，将 JWT 值添加到 Authorization 字段
         const headers = {
             Authorization: `Bearer ${jwt}`
@@ -72,7 +71,9 @@ const FormsPage = () => {
                                 <Field name="mode" id="mode" component="select">
                                     <option value="jsonrpc">JSONRPC</option>
                                     <option value="wss">WSS</option>
+{/*
                                     <option value="zmq">ZMQ</option>
+*/}
                                     <option value="restful">RESTFUL</option>
                                 </Field>
                                 <Field name="duration" id="duration" component="select">
@@ -95,15 +96,11 @@ const FormsPage = () => {
                 </CardBox>
 
                 <CardBox className="mb-6" hasTable>
-                    <Subscriptions />
+                    <Subscriptions network="bitcoin"/>
                 </CardBox>
-{/*
-                <SectionTitleLineWithButton icon={mdiHistory} title="History" main> </SectionTitleLineWithButton>
-                <CardBox hasTable>
-                    <SubscriptionHistory />
-                </CardBox>
-*/}
-                <SubscriptionHistory />
+
+                <SubscriptionHistory network="bitcoin"/>
+
             </SectionMain>
         </>
     )

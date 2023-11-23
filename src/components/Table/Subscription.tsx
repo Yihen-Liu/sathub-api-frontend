@@ -8,9 +8,9 @@ import Buttons from "../Buttons";
 import SectionTitleLineWithButton from "../Section/TitleLineWithButton";
 import CardBox from "../CardBox";
 
-export const Subscriptions = () => {
+export const Subscriptions = (params) => {
     const jwt = useAppSelector((state) => state.main.jwt)
-    const { subscriptions } = useSubscribe(jwt)
+    const { subscriptions } = useSubscribe(jwt, params.network)
     return (
         <>
             <table>
@@ -47,10 +47,10 @@ export const Subscriptions = () => {
     )
 }
 
-export const SubscriptionHistory = () => {
+export const SubscriptionHistory = (params) => {
     const jwt = useAppSelector((state) => state.main.jwt)
-    const { subscriptions } = useSubscribeHistory(jwt)
-    const perPage =5
+    const { subscriptions } = useSubscribeHistory(jwt, params.network)
+    const perPage = 10
 
     const [currentPage, setCurrentPage] = useState(0)
 

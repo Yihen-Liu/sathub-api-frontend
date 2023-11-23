@@ -21,11 +21,13 @@ const menuAside: MenuAsideItem[] = [
         label: 'Mainnet',
         icon: mdiTable,
     },
+/*
     {
         href: '/lightning',
         label: 'Lightning',
         icon: mdiTable,
     },
+*/
     {
         href: '/profile',
         label: 'Profile',

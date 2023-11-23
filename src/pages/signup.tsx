@@ -13,6 +13,8 @@ import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
 import axios from "axios";
 import {sha256} from "../util/crypto";
 import {SignupForm} from "../interfaces";
+import NotificationBar from "../components/NotificationBar";
+import {mdiCoffee} from "@mdi/js";
 
 const initialSignupForm: SignupForm = {
     email: '',
@@ -49,6 +51,14 @@ export default function Error() {
             <Head>
                 <title>{getPageTitle('Signup')}</title>
             </Head>
+
+            <NotificationBar
+                color="contrast"
+                icon={mdiCoffee}
+                outline={false}
+            >
+                Buy me a coffee if sathub help you save time. Your donation makes it better. BTC donation address: 1Da7UNTW8kLgNLKk4VGfAewm1TVZekQemQ
+            </NotificationBar>
 
             <SectionFullScreen bg="white">
                 <h1 className="text-6xl md:text-6xl text-center text-black font-bold mt-12 mb-3 lg:mt-0">

@@ -12,6 +12,8 @@ import SectionMain from '../components/Section/Main'
 import SectionTitleLineWithButton from '../components/Section/TitleLineWithButton'
 import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
 import axios from "axios";
+import {useAppSelector} from "../stores/hooks";
+import {SubscriptionHistory, Subscriptions} from "../components/Table/Subscription";
 
 interface SubMode {
     mode: string;
@@ -21,21 +23,22 @@ interface SubMode {
 const initialValues: SubMode = {
     mode: 'jsonrpc',
     duration: 'weekly',
-    network:'bitcoin'
+    network:'bitcoin mainnet'
 };
-const enable=0
+
 const TablesPage= () => {
+    const jwt = useAppSelector((state) => state.main.jwt)
     const handleSubmit = async(sub:SubMode) => {
-        if(enable==0){
-            alert("mainnet coming soooooooooooooon")
-            return
-        }
+        // 设置请求头，将 JWT 值添加到 Authorization 字段
+        const headers = {
+            Authorization: `Bearer ${jwt}`
+        };
         const response= await axios.post(backendURL,{
             jsonrpc:"2.0",
             method:"apply",
             params:[sub.mode,sub.duration, sub.network],
             id:new Date().getTime()
-        })
+        },{headers})
         if(response.data.code==backendSuccessedCode){
             alert("apply successed");
         }else{
@@ -68,7 +71,9 @@ const TablesPage= () => {
                                 <Field name="mode" id="mode" component="select">
                                     <option value="jsonrpc">JSONRPC</option>
                                     <option value="wss">WSS</option>
+{/*
                                     <option value="zmq">ZMQ</option>
+*/}
                                     <option value="restful">RESTFUL</option>
                                 </Field>
                                 <Field name="duration" id="duration" component="select">
@@ -78,7 +83,7 @@ const TablesPage= () => {
                                 </Field>
 
                                 <Field name="network" id="network" component="select">
-                                    <option value="bitcoin">Bitcoin Mainnet</option>
+                                    <option value="bitcoin mainnet">Bitcoin Mainnet</option>
                                 </Field>
                             </FormField>
                             <Buttons>
@@ -91,21 +96,10 @@ const TablesPage= () => {
                 </CardBox>
 
                 <CardBox className="mb-6" hasTable>
-{/*
-                    <Subscriptions />
-*/}
-
-                    <table>
-                        <thead>
-                        <tr>
-                            <th className='text-center'>Subscription</th>
-                            <th className='text-center'>Working URL</th>
-                            <th className='text-center'>End Time</th>
-                            <th className='text-center'>Upgrade</th>
-                        </tr>
-                        </thead>
-                    </table>
+                    <Subscriptions network="bitcoin mainnet"/>
                 </CardBox>
+
+                <SubscriptionHistory network="bitcoin mainnet"/>
             </SectionMain>
         </>
     )
