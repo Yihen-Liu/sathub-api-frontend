@@ -14,7 +14,7 @@ import axios from "axios";
 import {sha256} from "../util/crypto";
 import {LoginForm} from "../interfaces";
 import NotificationBar from "../components/NotificationBar";
-import {mdiCoffee} from "@mdi/js";
+import {mdiCheckCircle} from "@mdi/js";
 
 const initialLoginForm: LoginForm = {
     email: '',
@@ -52,7 +52,7 @@ const StyleSelect = () => {
             </Head>
                 <NotificationBar
                     color="contrast"
-                    icon={mdiCoffee}
+                    icon={mdiCheckCircle}
                     outline={false}
                 >
                   Thanks for your registration, welcome to the world of Bitcoin. Please enjoy it.
