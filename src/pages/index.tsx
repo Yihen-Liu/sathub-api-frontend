@@ -59,7 +59,7 @@ const StyleSelect = () => {
                 </NotificationBar>
             <SectionFullScreen bg="white">
                 <h1 className="text-6xl md:text-6xl text-center text-black font-bold mt-12 mb-3 lg:mt-0">
-                    Bitcoin Only Service Provider &nbsp; &nbsp;
+                    Work For Bitcoin Developer&nbsp; &nbsp;
                 </h1>
                 <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
                     <Formik initialValues={initialLoginForm} onSubmit={handleSubmit}>
