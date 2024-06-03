@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
-    "start": "next start",
+    "start": "PORT=3001 next start",
     "lint": "next lint",
     "format": "prettier 'src/**/*.{tsx,ts,js}' --write"
   },
