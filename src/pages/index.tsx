@@ -3,45 +3,45 @@ import { useRouter } from 'next/router'
 import React, { ReactElement } from 'react'
 import CardBox from '../components/CardBox'
 import LayoutGuest from '../layouts/Guest'
-import {backendSuccessedCode, backendURL, getPageTitle} from '../config'
+import { backendSuccessedCode, backendURL, getPageTitle } from '../config'
 import SectionFullScreen from '../components/Section/FullScreen'
 import { Field, Form, Formik } from 'formik'
 import FormField from '../components/Form/Field'
 import Divider from '../components/Divider'
 import Buttons from '../components/Buttons'
 import Button from '../components/Button'
-import axios from "axios";
-import {sha256} from "../util/crypto";
-import {LoginForm} from "../interfaces";
-import NotificationBar from "../components/NotificationBar";
-import {mdiCoffee} from "@mdi/js";
+import axios from 'axios'
+import { sha256 } from '../util/crypto'
+import { LoginForm } from '../interfaces'
+import NotificationBar from '../components/NotificationBar'
+import { mdiCoffee } from '@mdi/js'
 
 const initialLoginForm: LoginForm = {
     email: '',
     password: '',
-};
+}
 
 const StyleSelect = () => {
     const router = useRouter()
 
-    const handleSubmit = async(values:LoginForm) => {
-        if(values.email=="" || values.password==""){
-            alert("email or password is null")
+    const handleSubmit = async (values: LoginForm) => {
+        if (values.email == '' || values.password == '') {
+            alert('email or password is null')
             return
         }
-        const response= await axios.post(backendURL,{
-            jsonrpc:"2.0",
-            method:"login",
-            params:[values.email,sha256(values.password,"hex")],
-            id:new Date().getTime()
+        const response = await axios.post(backendURL, {
+            jsonrpc: '2.0',
+            method: 'login',
+            params: [values.email, sha256(values.password, 'hex')],
+            id: new Date().getTime(),
         })
-        if(response.data.code==backendSuccessedCode){
-            localStorage.setItem("sathub-jwt-key",response.data.result.token)
-            localStorage.setItem("sathub-user-name", response.data.result.username)
-            localStorage.setItem("sathub-user-email",values.email)
-            localStorage.setItem("sathub-donate-btcaddress", response.data.result.btcaddress)
+        if (response.data.code == backendSuccessedCode) {
+            localStorage.setItem('sathub-jwt-key', response.data.result.token)
+            localStorage.setItem('sathub-user-name', response.data.result.username)
+            localStorage.setItem('sathub-user-email', values.email)
+            localStorage.setItem('sathub-donate-btcaddress', response.data.result.btcaddress)
             await router.push('/dashboard')
-        }else{
+        } else {
             alert(response.data.error)
         }
     }
@@ -50,18 +50,15 @@ const StyleSelect = () => {
             <Head>
                 <title>{getPageTitle('Index')}</title>
             </Head>
-            {/*
-                <NotificationBar
-                    color="contrast"
-                    icon={mdiCoffee}
-                    outline={false}
-                >
-                    Buy me a coffee if sathub help you save time. Your donation makes it better. BTC donation address: 1Da7UNTW8kLgNLKk4VGfAewm1TVZekQemQ
-                </NotificationBar>
-            */}
+
+            <NotificationBar color="contrast" icon={mdiCoffee} outline={false}>
+                Buy me a coffee if sathub help you save time. Your donation makes it better. BTC
+                donation address: 1Da7UNTW8kLgNLKk4VGfAewm1TVZekQemQ
+            </NotificationBar>
+
             <SectionFullScreen bg="white">
                 <h1 className="text-6xl md:text-6xl text-center text-black font-bold mt-12 mb-3 lg:mt-0">
-                    Work For Bitcoin Developer&nbsp; &nbsp;
+                    Most Complete Bitcoin APIs&nbsp; &nbsp;
                 </h1>
                 <CardBox className="w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 shadow-2xl">
                     <Formik initialValues={initialLoginForm} onSubmit={handleSubmit}>
