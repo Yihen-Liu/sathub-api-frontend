@@ -50,6 +50,7 @@ const StyleSelect = () => {
             <Head>
                 <title>{getPageTitle('Index')}</title>
             </Head>
+            {/*
                 <NotificationBar
                     color="contrast"
                     icon={mdiCoffee}
@@ -57,6 +58,7 @@ const StyleSelect = () => {
                 >
                     Buy me a coffee if sathub help you save time. Your donation makes it better. BTC donation address: 1Da7UNTW8kLgNLKk4VGfAewm1TVZekQemQ
                 </NotificationBar>
+            */}
             <SectionFullScreen bg="white">
                 <h1 className="text-6xl md:text-6xl text-center text-black font-bold mt-12 mb-3 lg:mt-0">
                     Work For Bitcoin Developer&nbsp; &nbsp;
