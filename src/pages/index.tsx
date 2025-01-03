@@ -53,7 +53,7 @@ const StyleSelect = () => {
 
             <NotificationBar color="contrast" icon={mdiCoffee} outline={false}>
                 Buy me a coffee if sathub help you save time. Your donation makes it better. BTC
-                donation address: 1Da7UNTW8kLgNLKk4VGfAewm1TVZekQemQ
+                donation address: 1A1fYt41EcXPtjVNU14AMRBj9f8X6w7VGU
             </NotificationBar>
 
             <SectionFullScreen bg="white">
